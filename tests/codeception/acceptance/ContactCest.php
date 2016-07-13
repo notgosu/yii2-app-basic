@@ -7,16 +7,16 @@ class ContactCest
 {
     public function _before(\AcceptanceTester $I)
     {
-        $I->amOnPage('site/contact');
+        $I->amOnPage('index-test.php?r=site%2Fcontact');
     }
     
-    public function openContactPage(AcceptanceTester $I)
+    public function contactPageWorks(AcceptanceTester $I)
     {
         $I->wantTo('ensure that contact page works');
         $I->see('Contact', 'h1');
     }
 
-    public function submitContactForm(AcceptanceTester $I)
+    public function contactFormCanBeSubmitted(AcceptanceTester $I)
     {
         $I->wantTo('submit contact form');
         $I->fillField('#contactform-name', 'tester');
