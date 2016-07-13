@@ -15,18 +15,19 @@ class ContactCest
         $I->wantTo('ensure that contact page works');
         $I->see('Contact', 'h1');
     }
-    
-    public function submitEmptyContactForm(AcceptanceTester $I)
+
+    public function submitContactForm(AcceptanceTester $I)
     {
-        $I->wantTo('submit contact form with no data');
+        $I->wantTo('submit contact form');
+        $I->fillField('#contactform-name', 'tester');
+        $I->fillField('#contactform-email', 'tester@example.com');
+        $I->fillField('#contactform-subject', 'test subject');
+        $I->fillField('#contactform-body', 'test content');
+        $I->fillField('#contactform-verifycode', 'testme');
+
         $I->click('contact-button');
 
-        $I->expectTo('see validations errors');
-        $I->see('Contact', 'h1');
-        $I->see('Name cannot be blank', '.help-block-error');
-        $I->see('Email cannot be blank', '.help-block-error');
-        $I->see('Subject cannot be blank', '.help-block-error');
-        $I->see('Body cannot be blank', '.help-block-error');
-        $I->see('The verification code is incorrect', '.help-block-error');
+        $I->dontSeeElement('#contact-form');
+        $I->see('Thank you for contacting us. We will respond to you as soon as possible.');
     }
 }
