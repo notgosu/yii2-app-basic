@@ -18,7 +18,7 @@ class ContactCest
 
     public function contactFormCanBeSubmitted(AcceptanceTester $I)
     {
-        $I->wantTo('submit contact form');
+        $I->amGoingTo('submit contact form with correct data');
         $I->fillField('#contactform-name', 'tester');
         $I->fillField('#contactform-email', 'tester@example.com');
         $I->fillField('#contactform-subject', 'test subject');
